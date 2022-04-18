@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+<h3>Product Management</h3>
+<p>
+    <a th:href="@{/products/create}">Add new product</a>
+</p>
+<table id="products">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${products}">
+        <td th:text="${row.getId()}"></td>
+        <td th:text="${row.getName()}"></td>
+        <td th:text="${row.getPrice()}"></td>
+        <td th:text="${row.getDescription()}"></td>
+        <td th:text="${row.getQuantity()}"></td>
+        <td><a th:href="@{/products/{id}/edit(id=${row.getId()})}">Edit</a></td>
+        <td><a th:href="@{/products/{id}/delete(id=${row.getId()})}">Delete</a></td>
+        <td><a th:href="@{/products/{id}/view(id=${row.getId()})}">View</a></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="8" align="center">DTROYAL</td>
+    </tr>
+    </tfoot>
+</table>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
